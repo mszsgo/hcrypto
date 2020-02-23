@@ -29,7 +29,6 @@ func DesCBCEncrypt(src, key, iv []byte, padding string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return CBCEncrypt(block, src, iv, padding)
 }
 

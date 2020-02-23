@@ -1,5 +1,10 @@
 package hcrypto
 
+import (
+	"encoding/base64"
+	"errors"
+)
+
 /*
 对称加密（DES）+验签（MD5）方式方法如下：
 加密步骤：
@@ -18,8 +23,36 @@ package hcrypto
   6. 【解密报文】通过双方约定的密钥K1使用DES解密密文字节数组B1，得到明文报文：R
 */
 
-// public static final String PKCS5 = "DES/CBC/PKCS5Padding";
+// 加密
+func DesMd5Encode(src, key string) (string, error) {
+	b1, err := DesCBCEncrypt([]byte(src), []byte(key), []byte(key), PKCS5_PADDING)
+	if err != nil {
+		return "", err
+	}
+	s2 := base64.StdEncoding.EncodeToString(b1)
+	s3 := key + s2
+	m1 := Md5(s3)
+	r := m1 + s2
+	return r, nil
+}
 
-func Datagram() {
-
+// 解密
+func DesMd5Decode(src, key string) (string, error) {
+	m1 := src[0:32]
+	s2 := src[32:]
+	s3 := key + s2
+	m2 := Md5(s3)
+	if m1 != m2 {
+		return "", errors.New("SignError")
+	}
+	b1, err := base64.StdEncoding.DecodeString(s2)
+	if err != nil {
+		return "", err
+	}
+	bytes, err := DesCBCDecrypt(b1, []byte(key), []byte(key), PKCS5_PADDING)
+	if err != nil {
+		return "", err
+	}
+	r := string(bytes)
+	return r, nil
 }
