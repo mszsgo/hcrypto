@@ -1,4 +1,4 @@
-package hencrypt
+package hcrypto
 
 import (
 	"github.com/stretchr/testify/assert"

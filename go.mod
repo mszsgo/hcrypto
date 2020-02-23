@@ -1,4 +1,4 @@
-module github.com/mszsgo/hencrypt
+module github.com/mszsgo/hcrypto
 
 go 1.13
 

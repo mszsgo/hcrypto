@@ -1,4 +1,4 @@
-package hencrypt
+package hcrypto
 
 import (
 	"encoding/base64"
@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestDesEncrypt(t *testing.T) {
+func TestDesECBEncrypt(t *testing.T) {
 	src := []byte("123456")
 
 	// DES-ECB, PKCS7_PADDING

@@ -1,4 +1,4 @@
-package hencrypt
+package hcrypto
 
 import (
 	"encoding/base64"

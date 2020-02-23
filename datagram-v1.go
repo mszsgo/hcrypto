@@ -1,4 +1,4 @@
-package hencrypt
+package hcrypto
 
 /*
 对称加密（DES）+验签（MD5）方式方法如下：
