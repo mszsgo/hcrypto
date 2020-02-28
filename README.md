@@ -1,2 +1,9 @@
-# hencrypt
-Encrypt
+# hcrypto
+
+对不同场景的加密需求做封装，简化加密调用方法。
+
+
+
+
+
+ 
